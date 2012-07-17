@@ -1,0 +1,164 @@
+.DialogueBG{background:url(http://p1.51mdq.com/images/DialogueBG.png) repeat-y; width:485px;border:1px #fff solid; padding:10px;}
+.DialogueBox{border:5px #999 solid;padding:1px; background:#fff;}
+.DialogueBox .top{background:#ea5504; height:30px; line-height:30px; padding-left:10px;}
+.DialogueBox .top span{float:left;display:block; line-height:30px; font-size:14px; font-weight:bold; color:#fff;}
+.DialogueBox .top span.Close{float:right; padding-top:8px; padding-right:10px; cursor:pointer;position:static;width:auto;}
+.DialogueBox .MenuBox{margin:30px 9px 10px 9px;border-bottom:2px #ea5504 solid;height:28px; padding-left:102px;}
+.DialogueBox .MenuBox .Now{width:125px;float:left;height:28px;line-height:28px; font-weight:bold; color:#fff;background:#eb5605;}
+.DialogueBox .MenuBox .Line{width:2px; float:left; height:24px;}
+.DialogueBox .Old{width:123px;float:left;height:24px; font-weight:bold;background:url(http://p1.51mdq.com/images/DetailMenuline.gif) bottom repeat-x;border:1px #ccc solid;}
+.DialogueBox .MenuBoxCom{margin:30px 9px 10px 9px;border-bottom:2px #ea5504 solid;height:28px; padding-left:30px;}
+.DialogueBox .MenuBoxCom .Now{width:125px;float:left;height:28px;line-height:28px; font-weight:bold; color:#fff;background:#eb5605;}
+
+.DialogueBox .MenuBox .OldCon{line-height:22px;font-weight:lighter;border:1px #fff solid; background:url(http://p1.51mdq.com/images/DetailMenudot.gif) 90px 10px no-repeat}
+.DialogueBox .ConBox{padding:20px;}
+.DialogueBox .Con{text-align:left;line-height:20px; padding:10px 0 20px 40px;}
+.DialogueBox .Con span{ font-size:14px; line-height:35px;margin:5px 0 0 10px;}
+
+.DialogueBox .Sad{text-align:left;line-height:20px; padding-left:10px;}
+.DialogueBox img{ float:left;}
+.DialogueBox .Sad span{ float:left; width:350px; display:block; font-size:14px; line-height:25px; padding-left:20px; padding-top:3px;}
+
+.DialogueBox .Tip{text-align:left;line-height:20px; padding-left:30px;}
+.DialogueBox .Tip span{ float:left; width:300px; display:block; font-size:14px; line-height:25px; padding-left:20px; padding-top:3px;}
+.DialogueBox .TipBot span{ margin-left:20px;float:left;background:url(http://p1.51mdq.com/images/DetailMenuline.gif) bottom repeat-x; border:1px #ccc solid; cursor:pointer;width:90px; height:20px; line-height:24px;}
+.DialogueBox .TipBot{ padding-left:80px; padding-top:10px;}
+.DialogueBox .TipBot a{ font-size:12px; text-decoration:none;}
+.DialogueBox .TipBack{ text-align:right; padding-top:30px;}
+
+.DialogueBox .ConBox .Text{float:left;width:126px;}
+.DialogueBox .ConBox .Text span{display:block;height:28px;line-height:28px;text-align:right; font-size:14px; margin-bottom:26px;}
+.DialogueBox .ConBox .FlaBox{float:left;width:260px;text-align:left;}
+.DialogueBox .ConBox .InputBox{height:26px;line-height:26px; margin:1px 0; color:#999}
+
+.DialogueBox .ConBox .InputWaring{ height:24px; line-height:24px; margin:1px 0; color:Red}
+.DialogueBox .ConBox .inputError{ height:24px; line-height:24px;width:250px;margin:1px 0;padding:0 4px;border:1px #F00 solid}
+.DialogueBox .ConBox .inputDefault{ height:26px;line-height:26;width:250px;margin:1px 0;padding:0 4px;border:1px #ccc solid;}
+
+.DialogueBox .ConBox .ButBox{height:26px;line-height:26px; margin:10px 0; text-align:left}
+.DialogueBox .ConBox input.Boder{border:1px #ccc solid; height:24px; line-height:24px; padding:0 4px;width:250px;}
+.DialogueBox .ConBox input.login{border:1px #ccc solid; height:24px; line-height:24px; padding:0 4px; width:180px;}
+.DialogueBox .ConBox input.Now{border:2px #d3ad5a solid; height:22px; line-height:22px; padding:0 4px;}
+.DialogueBox .ConBox input.Kuang{border:none; height:15px; line-height:15px;padding:0; width:15px;}
+.DialogueBox .ConBox .ButBox span{padding-top:5px;display:block; float:left; padding-right:5px;}
+.DialogueBox .ConBox .ButBox span.cGray{padding-top:0px;}
+.DialogueBox .ConBox{padding:20px;}
+.DialogueBox .ConBox .zcTip{ border-top:1px #ccc solid;}
+.ConBox2{padding:40px 120px;background:url(http://p1.51mdq.com/images/ConBoxBg.gif) top repeat-x; }
+.ConBox2 .spanBox{height:23px;padding:2px 0;}
+.ConBox2 span{float:left; display:block; line-height:23px;}
+.ConBox2 span.Hot{color:#ea5504;text-align:center;}
+
+.ConBox3{padding-top:30px; height:100px;background:url(http://p1.51mdq.com/images/ConBoxBg.gif) top repeat-x;}
+.ConBox3 .spanBox{text-align:left; width:346px; margin:0 auto; padding-bottom:20px;}
+.ConBox3 .spanBox span{display:block;width:23px; height:23px; background:url(http://p1.51mdq.com/images/icon_cooperation.jpg);float:left;}
+.ConBox3 .spanBox span.num2,.ConBox3 .spanBox span.num3,.ConBox3 .spanBox span.num4,.ConBox3 .spanBox span.num5{ margin-left:5px;}
+.ConBox3 .spanBox span.num2{ background-position:-22px 0;}
+.ConBox3 .spanBox span.num3{ background-position:-115px 0;}
+.ConBox3 .spanBox span.num4{ background-position:-92px 0;}
+.ConBox3 .spanBox span.num5{ background-position:-69px 0;}
+.ConBox3 .spanBox .aName{float:left; margin-top:5px; padding-right:10px;border-right:1px #ccc solid;}
+.ConBox3 .spanBox a:hover{ color:#404040; text-decoration:none;}
+.ConBox3 .spanBox a.last{ margin-right:auto; border:none;}
+
+.ConAnger{padding:5px 0;text-align:left;padding-left:50px;}
+.DialogueBox .ConBox .ConAnger input{width:320px;}
+.ConAnger textarea{border:1px #ccc solid; width:320px; height:100px;padding:4px 4px; font-size:12px; line-height:18px;}
+.Inputbut{background:url(http://p1.51mdq.com/images/InputbutBg.gif);height:21px;line-height:21px; color:#004098; text-align:center; padding:0 10px; border:1px #bdd9ff solid; font-size:12px;}
+
+.DialogueConBox .top{background:#ea5504; height:30px; line-height:30px; padding-left:10px;}
+.DialogueConBox .top span{float:left;display:block; line-height:30px; font-size:14px; font-weight:bold; color:#fff;}
+.DialogueConBox .top span.Close{float:right; padding-top:8px; padding-right:10px;}
+
+.DialogueConBG{background:url(http://p1.51mdq.com/images/DialogueBG.png) repeat-y; width:188px;border:1px #fff solid; padding:5px;}
+.DialogueConBox{ width:180px;border:3px #999 solid;padding:1px; background:#fff;}
+.ConBig{ width:150px;float:left;padding:10px 2px; padding-bottom:0;}
+.ConBox .BoxRig{float:left; width:300px; padding-top:15px; padding-left:50px;text-align:left;}
+.ConBox .BoxRig span{ padding:0 3px; }
+.ConBox .BoxRig  .BoxLeft{display:block;float:left; width:120px;height:35px; padding:20px 0 0 20px;}
+.ConBox1{ text-align:left;width:168px;float:left; padding:10px 0 5px 5px;margin-bottom:10px;background:#fff4ef; border:1px solid #f7b997;}
+.ConBox1 .Text{ width:157px; float:left;}
+.ConBox1 .Text span{ float:left; display:block;}
+.ConBox1 .Text .Close{float:right;}
+.Icon{float:left;width:140px;padding:10px; padding-top:2px;}
+.Icon .Com{ float:left; width:70px; height:22px;}
+.Icon .Text{ float:left; width:70px;margin-top:6px;display:block;}
+.px{ height:10px;}
+
+.RightColor1,
+.RightColor1 a{
+	color:#0033cc;
+}
+.RightStyle1{
+	text-align:left;
+}
+.RightPad1{
+	padding:3px 0 0 68px;
+}
+.RightPad2{
+	padding:8px 0 0 12px;
+	clear:both;
+}
+.RightPad3{
+	padding:0 0 50px 83px;
+	line-height:6px;
+}
+.RightBg1{
+	background:url(http://p1.51mdq.com/images/right_2.gif) no-repeat;
+}
+.RightBg2{
+	background:url(http://p1.51mdq.com/images/right_3.gif) repeat-y;
+}
+.RightBg3{
+	background:url(http://p1.51mdq.com/images/right_4.gif) no-repeat;
+}
+.RightP1{
+	margin:0px;
+	line-height:44px;
+}
+.RightP2{
+	padding-top:30px;
+}
+.RightP3{
+	text-align:right;
+	padding-right:42px;
+	padding-bottom:16px;
+}
+.RightP4{
+	margin:0px;
+	line-height:44px;
+}
+.RightP60{
+	margin:0px;
+	line-height:60px;
+}
+.RightP20{
+	margin:0px;
+	line-height:20px;
+	padding-bottom:30px;
+}
+.RightP00{ padding-left:34px;
+	line-height:44px;
+}
+.boderBot{ width:550px;border-bottom:1px solid #ccc;}
+.yz{ text-align:left; width:405px; line-height:22px; padding-top:10px;}
+
+.RightBg2 p{
+	margin:0 auto;
+}
+.RightBg1,
+.RightBg2,
+.RightBg3{
+	width:642px;
+	margin:0 auto;
+}
+.RightBg1,
+.RightBg3{
+	height:13px;
+	line-height:13px;
+}
+
+
+
+.DialogueBox .ConBox .ButBox a{background:url(http://p1.51mdq.com/images/DialogueBoxLogin.jpg) left top no-repeat; width:99px; display:block; height:37px}
+.DialogueBox .ConBox .ButBox a:active{background:url(http://p1.51mdq.com/images/DialogueBoxLogin.jpg) left 1px no-repeat;}

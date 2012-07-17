@@ -1,0 +1,110 @@
+/* CSS Document */
+
+body {
+	background: #f0e7ac;
+	font-family:"свт╡"; 		  
+	font-size:1.2em;
+	margin:0 auto;
+	line-height:1.3em;
+}
+img{
+	max-width:45%;
+	margin:0 auto;
+}
+#part_1{
+	width:auto;
+}
+#part_2{
+	width:auto;
+}
+ul{ 
+  padding:0; 
+  margin:0;
+}
+ul { 
+   list-style:none;
+}
+a  { 
+   color:#333; 
+   text-decoration:none;
+}
+a:hover {
+	color:#0C6;
+}
+.clear{
+   clear:both;
+   height:0;
+   font-size: 1px;
+   line-height: 0px;
+} 
+
+/*body*/
+#container { 
+    width:100%; 
+	margin:0 auto;
+}
+
+/*nav*/
+#nav { 
+    height:66px;
+    background:url(../images/nav_bg.gif) 0 0 repeat-x; 
+    margin-bottom:6px;
+}
+#nav_l { 
+    float:left; 
+    height:66px; 
+    width:5px; 
+    /*overflow:hidden; */
+    background:url(../images/nav_bg.gif) 0 -66px no-repeat; 
+    margin-right:15px;
+}
+#nav_r { 
+    float:right;
+    height:66px; 
+    width:5px; 
+    /*overflow:hidden;*/ 
+    background:url(../images/nav_bg.gif) -5px -66px no-repeat;
+}
+.navmain { 
+    height:36px; 
+   /* overflow:hidden;*/
+}
+.navmain ul li { 
+    float:left; 
+    font-size:14px;
+    font-weight:bold; 
+    margin:5px 0 0 1px;
+}
+.navmain ul li a { 
+    float:left; 
+    display:block;
+    height:26px; 
+    line-height:26px; 
+    color:#fff; 
+    padding-left:10px;
+}
+.navmain ul li a:hover { 
+    background:url(../images/nav_bg.gif) 0 -163px no-repeat; 
+	color:#fff;
+}
+.navmain ul li a span { 
+    float:left; 
+    display:block; 
+    padding-right:5px;
+}
+.navmain ul li a:hover span  { 
+    background:url(../images/nav_bg.gif) right -163px no-repeat; 
+	cursor:pointer;
+}
+.navmain ul li a#nav_current { 
+    height:31px; 
+	line-height:31px; 
+	background:url(../images/nav_bg.gif) 0 -132px no-repeat;
+	color:#646464;
+}
+.navmain ul li a#nav_current span { 
+    height:31px; 
+    background:url(../images/nav_bg.gif) right -132px no-repeat;
+}
+
+
