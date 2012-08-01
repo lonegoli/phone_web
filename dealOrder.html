@@ -1,0 +1,135 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"> 
+<style>
+#container { 
+ 	min-height: 100%;
+	height: auto !important; 
+	height: 100%; 
+    width:100%; 
+	margin:0 auto;
+	position:absolute;
+	top:0;
+	left:0;
+}
+#loginBoxContent{
+	height:140px;
+	width:70%;
+	background:white;
+	z-index:9998;
+	border:1px solid #009966;
+	float:top;
+	margin:0px auto;
+	
+}
+#loginBoxStyle{
+	height:100%;
+	width:100%;
+	filter:alpha(opacity=70);
+	-moz-opacity:0.78;
+	opacity:0.7;
+	background: #000000;
+}
+#loginBoxMain{
+	position:absolute;
+	top:0;
+	left:0;
+	height:100%;
+	width:100%;
+	z-index:101;
+	/*display:none;*/
+}
+
+#loginBoxTitle{
+	height:35px;
+	width:70%;
+	color: #009966;
+	background:white;
+	z-index:9998;
+	border:1px solid  #009966;
+	margin:0px auto;
+	
+}
+#loginBoxOutline{
+	z-index:999;
+	position: absolute;
+	width:100%;
+	top:50px;
+	font-size:28px;
+}
+#loding{
+	display:none;
+	position: absolute;
+    top: 200px;
+	width:100%;
+}
+</style>
+<script src="js/jquery.min.js" type="text/javascript"></script>
+<!--提交代码-->
+
+<script type="text/javascript">
+function createXMLHttpRequest(){
+if(window.XMLHttpRequest){//非IE浏览器
+			xmlHttp=new XMLHttpRequest();
+		}
+		else if(window.ActiveXObject){
+			xmlHttp=new ActiveXObject("Microsoft.XMLHTTP");
+		}
+
+ }
+ 
+function Todeal(){
+createXMLHttpRequest();
+postStr="a="+4;
+xmlHttp.open("post", "topad.php");
+xmlHttp.setRequestHeader("cache-control","no-cache"); 
+xmlHttp.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+xmlHttp.send(postStr);
+xmlHttp.onreadystatechange=function()
+{
+if (4==xmlHttp.readyState){
+                if (200==xmlHttp.status)
+				{
+				    alert(xmlHttp.responseText);
+                }
+				else
+				{
+                    alert("发生错误!");
+                }
+            }
+}
+}
+
+</script>
+
+<!--跳转函数-->
+<script type="text/javascript">     
+function countDown(secs,surl){     
+ //alert(surl);     
+ var jumpTo = document.getElementById('jumpTo');
+ jumpTo.innerHTML=secs;  
+ if(--secs>0){     
+     setTimeout("countDown("+secs+",'"+surl+"')",1000);     
+     }     
+ else{       
+     location.href=surl;     
+     }     
+ }     
+</script> 
+
+<script type="text/javascript">
+window.onload = function(){
+        Todeal();
+			countDown(3,'http://www.cainaoke.com/');
+}
+</script>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+</head>
+<body>
+
+<span id="jumpTo">3</span>秒后自动跳转到首页
+
+</body>
+</html>

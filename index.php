@@ -45,7 +45,7 @@ $(document).ready(function(){
     {
 		if(obj.shoenum.value==0)
 		{
-			alert("����Ĳ���");
+			
 		}
 		else
 		{
@@ -136,19 +136,20 @@ ul, li {
 }
 #nav .mainlevel {
     background: none repeat scroll 0 0 #164C3F;
-    border-right: 1px solid #FFFFFF;
     float: left;
     height: 95%;
-    width: 24%;
+    width: 25%;
 }
 #nav .mainlevel a {
+	
     color:#FFFFFF;
     display: block;
     line-height: 32px;
     padding: 0;
+	border-right: 1px solid #FFFFFF;
     text-align: center;
     text-decoration: none;
-    width: 100%;
+   
 }
 #nav .mainlevel a:link
 {
@@ -189,9 +190,9 @@ ul, li {
 }
 .textContent
 {
+	clear: right;
 	padding:10px 0 0 10px;
-	float:right;
-	
+	float:left;
 	max-width:55%;
 }
 .down
@@ -210,9 +211,9 @@ ul, li {
 $db=new SQLite3("db/test.db3");
 $rs=$db->query('select * from table_show');
 $colNum=$rs->numColumns();
-echo ' <div class="header">
+echo '  <a name="top" id="top"></a><div class="header">
        <ul id="nav"> 
-       <li class="mainlevel"><a href="#">产品分类</a>
+       <li class="mainlevel"><a href="#">分类</a>
 	   <ul style="width:100%;">';
 	while ($row = $rs->fetchArray())
 	{ 
@@ -220,14 +221,14 @@ echo ' <div class="header">
 	{
 	if ($rs->columnName($i) == 'class')
 	{
-	echo '<li style="width:24%;"><a href="index.php?tablename='.$row[$i].'" ><span>' . $row[$i] . '</span></a></li>'; 
+	echo '<li style="width:25%;"><a href="index.php?tablename='.$row[$i].'" ><span>' . $row[$i] . '</span></a></li>'; 
 	}
 	}
 	}
 
 echo '</ul><li class="mainlevel"><a href="check_out.php" ><span>购物车</span></a></li>';
-echo '<li class="mainlevel"><a href="#" ><span>关于我们</span></a></li>';
-echo '<li class="mainlevel"><a href="video.html" ><span>娱乐</span></a></li>';
+echo '<li class="mainlevel"><a href="service.php" ><span>服务</span></a></li>';
+echo '<li class="mainlevel" ><a href="recreation.html"  ><span>娱乐</span></a></li>';
 echo '</ul>
       </div>
       <div class="center">';
@@ -269,12 +270,18 @@ else
 	echo "<tr><td>数量："; 
 	?>
 	<input type="button" name="button1" value="-"  onClick="md1(this.form);" onMouseOut="mo1(this.form);"   onMouseUp="mo1(this.form);">
-	<input style="width:10%;" type="text" id="shoenum" name="shoenum" value="1">
+	<!--<input style="width:10%;" type="text" id="shoenum" name="shoenum" readonly="readonly" onfocus="this.blur" value="1">-->
+    <input style="width:15%;background-color:#FFF;border:1px solid #999;" type="button" id="shoenum" name="shoenum"  value="1">
 	<input type="button" name="button2" value="+"  onClick="md2(this.form);" onMouseOut="mo2(this.form);"   onMouseUp="mo2(this.form);">
 
 	<?php 
 	echo "</td></tr>";
-	echo "<tr><td><input type='button' value='加入购物车' onClick='add_to_cart(this.form);changeColor(red)'></td></tr>";
+	echo "<tr><td><input type='button' value='加入购物车' onClick='add_to_cart(this.form),changeColor(red)'><span id=\"showbuydish".$row['id']."\" style=\"color:red;\">";
+	if(isset($_SESSION[$id]))
+	{
+		echo "已点(".$_SESSION[$id]['num'].")";
+	}
+	echo "</span></td></tr>";
 	echo '</table>';
 	echo '</form></div></div>';
 	echo '<hr>';
@@ -289,14 +296,13 @@ else
 ?>
 <div style="overflow:hidden;margin-top:-180px;">
 <div class="go">
-	<a title="返回顶部" class="PTop" href="#top" target="_self">返回<br/>至顶部<br/><br/></a>
+	<a title="返回顶部"  class="PTop" style="line-height:24px;" href="#top" target="_self">返回<br/>至顶部<br/><br/></a>
 	<!--<a title="如果您有意见，请反馈给我们！" class="feedback" href="http://www.txcomcom.com" target="_blank">反馈</a>
 	<a title="返回底部" class="PBottom" href="#PositionFoot">至底部</a>-->
 </div>
 </div>
-<div class="down" align="center"><img src="image/logo.gif" width="129" height="68" />
-	  Copyright @copy; 菜脑壳版权所有
-									  | <a href="index.php">返回首页</a> | <a href="#">维护管理</a> |									 
+<div class="down" align="center" ><img  src="image/logo.gif" width="129" height="68" />
+	  <p style="text-align:center;margin-top: -20px;">Copyright@2012 www.cainaoke.com All Rights Reserved	</p>							 
 </div> 
 </body>
 </html>

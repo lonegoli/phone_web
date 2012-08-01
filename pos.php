@@ -6,6 +6,7 @@ $month=$_POST['month'];
 $hrs=$_POST['hrs'];
 $min=$_POST['min'];
 $year=$_POST['year'];
+$date=$_POST['date'];
 
 $socket = socket_create(AF_INET, SOCK_STREAM, SOL_TCP);
 /*if(!$socket)
@@ -28,7 +29,7 @@ $ent="\r\n";
 //socket_write($socket,"\x1b\x44\x01x0e\x15\x00");
 socket_write($socket,"\x1b\x40      菜脑壳点菜系统票据\r\n");
 socket_write($socket,$ent);
-$time=sprintf("座号：     时间：%d-%d %d:%d\r\n",$year,$month,$hrs,$min);
+$time=sprintf("座号：   时间：%d-%d-%d %d:%d\r\n",$year,$month,$date,$hrs,$min);
 socket_write($socket,$time);
 socket_write($socket,"*******************************\r\n");
 $products=array(); 
