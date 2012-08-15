@@ -23,18 +23,19 @@ function countDown(secs,surl){
 </head>
 <body>
 <?PHP  
-include('quote.php');
-$db=openSQLite3Table_info_temporary();
+//include('quote.php');
+//$db=openSQLite3Table_info_temporary();
+$db=new SQLite3("db/temporary/temp.db3") or die("打开数据库失败！");
    if(!empty($_POST["t1"]))
     {  
 	   $array = $_POST["t1"];  
 	   $size = count($array);
-	   echo $size;  
+	   
 	   for($i=0; $i< $size; $i++)
 	      
 		  {  
 		  $sql=sprintf("insert into callWaiter values(null,%d,%d)",$_SESSION['tablenum'],$array[$i]);
-		  $db->exec($sql);
+		  $db->exec($sql) or die("呼叫失败！");
 		  
 		  }  
     } 
@@ -42,9 +43,9 @@ $db->close();
 $db=null;
 ?> 
 
-<span>提交成功，请稍等服务员来处理！<span><span id="jumpTo">3</span>秒后自动跳转到服务页面
+<span>尊敬的客户！您已提交成功，请稍等服务员来处理。</span><span id="jumpTo">3</span>秒后自动跳转到首页。
 </body>
 </html>
 <script>
-countDown(3,'wwww.cainaoke.com');
+countDown(3,'index.php');
 </script>

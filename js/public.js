@@ -34,7 +34,16 @@ xmlHttp.onreadystatechange=function()
 {
 if(xmlHttp.readyState==4 && xmlHttp.status==200)
 {
-	alert("添加成功");
+  var showbuy="showbuy"+key;
+  if(xmlHttp.responseText)
+  {
+  
+	document.getElementById(showbuy).innerHTML="已点("+xmlHttp.responseText+")";
+  }
+  else
+  {
+	document.getElementById(showbuy).innerHTML="";  
+  }
 }
 }
 }
@@ -82,7 +91,7 @@ xmlHttp.send(postStr);
 xmlHttp.onreadystatechange=function(){
 if(xmlHttp.readyState==4 && xmlHttp.status==200){
 //myINput��ʾ��ť��������ĸ�Ԫ����td,td�ĸ�Ԫ����tr�����ǰ�tr��Ϊ���أ�Ҳ��ɾ������Ʒ��Ϣ�ˡ�
-alert("删除成功");
+//alert("删除成功");
 myInput.parentNode.parentNode.style.display="none";
 
 //�����������Ƴ�����Ʒ���ܽ�xmlHttp.responseTextΪ���ص��ܽ�
@@ -92,4 +101,17 @@ document.getElementById("totalamount1").innerHTML=xmlHttp.responseText;
 }
 }
 
+function add_tablenum(num)
+{
+	createXMLHttpRequest();
+var postStr="num="+num;
+xmlHttp.open("post", "add_tablenum.php");  //���������ҳ�棬����Ϊremove_to_cart.php;
+xmlHttp.setRequestHeader("cache-control","no-cache"); 
+xmlHttp.setRequestHeader("Content-Type","application/x-www-form-urlencoded"); 
+xmlHttp.send(postStr);
+xmlHttp.onreadystatechange=function(){
+if(xmlHttp.readyState==4 && xmlHttp.status==200){
+}
+}
+}
 

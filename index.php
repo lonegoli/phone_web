@@ -226,7 +226,7 @@ echo '  <a name="top" id="top"></a><div class="header">
 	}
 	}
 
-echo '</ul><li class="mainlevel"><a href="check_out.php" ><span>购物车</span></a></li>';
+echo '</ul><li class="mainlevel"><a href="check_out.php" ><span>餐车</span></a></li>';
 echo '<li class="mainlevel"><a href="service.php" ><span>服务</span></a></li>';
 echo '<li class="mainlevel" ><a href="recreation.html"  ><span>娱乐</span></a></li>';
 echo '</ul>
@@ -276,10 +276,10 @@ else
 
 	<?php 
 	echo "</td></tr>";
-	echo "<tr><td><input type='button' value='加入购物车' onClick='add_to_cart(this.form),changeColor(red)'><span id=\"showbuydish".$row['id']."\" style=\"color:red;\">";
+	echo "<tr><td><input type='button' value='加入餐车' style='font-size:16px;'  onClick='add_to_cart(this.form),changeColor(red)'><span id=\"showbuydish".$row['id']."\" style=\"color:red;\">";
 	if(isset($_SESSION[$id]))
 	{
-		echo "已点(".$_SESSION[$id]['num'].")";
+		echo "已点(".$_SESSION[$id]['num'].")";    
 	}
 	echo "</span></td></tr>";
 	echo '</table>';

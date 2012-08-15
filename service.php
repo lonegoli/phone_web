@@ -17,11 +17,18 @@ session_start();
 function createXMLHttpRequest(){
 if(window.XMLHttpRequest){//非IE浏览器
 			xmlHttp=new XMLHttpRequest();
+			if(!xmlHttp)
+			{
+				alert("创建对象失败");
+			}
 		}
 		else if(window.ActiveXObject){
 			xmlHttp=new ActiveXObject("Microsoft.XMLHTTP");
+			if(!xmlHttp)
+			{
+				alert("创建对象失败");
+			}
 		}
-
  }
  
 function Todeal(tablenum){
@@ -47,6 +54,38 @@ if (4==xmlHttp.readyState){
 }
 }
 
+function Ajax(data,object){
+createXMLHttpRequest();
+var postStr="tablenum="+data;
+xmlHttp.open("post", "tablechk.php");
+xmlHttp.setRequestHeader("cache-control","no-cache"); 
+xmlHttp.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+xmlHttp.send(postStr);
+xmlHttp.onreadystatechange=function()
+{
+if (4==xmlHttp.readyState){
+                if (200==xmlHttp.status)
+				{
+					if(xmlHttp.responseText=="true")
+					{
+						alert("该桌号不存在，请重新输入！");
+						document.getElementById(object).value="";
+						document.getElementById(object).focus();
+					}
+					else
+					{
+						$("div#loginBoxMain").css("display","none");
+			    //$("div#loding").css("display","block");
+			            Todeal(data);
+			  //countDown(3,'http://www.cainaoke.com/'); 		
+					}
+               }
+               else{
+                       alert("发生错误!");
+                   }
+           }
+}
+}
 </script>
 <script type="text/javascript">
 $(document).ready(function(){
@@ -75,7 +114,7 @@ html, body, ul, li {
 }
 body {
     padding: 0;
-	background-color:#2D3033;
+	background-color:#CCC;
 }
 .test {
     background: none repeat scroll 0 0 #EEEEEE;
@@ -188,8 +227,7 @@ ul, li {
 body {
 	margin:0;
 	padding:0;
-	
-
+	position: relative;
 }
 h1 {
 	color:#000;
@@ -200,15 +238,25 @@ h1 {
  -moz-opacity:0.3;
  -khtml-opacity: 0.3;
  opacity: 0.3;*/
- border:2px solid #0CF;
+ border:2px solid #666;
+ margin:10px 20px 0px 20px;
+ padding:10px;
+ border-radius:4px 4px 4px;
+ -webkit-box-shadow:2px 2px #999;
+ box-shadow:2px 2px #999;
 }
 .down
 {
 	margin-top:90px;
 	background-color:#CCC;
+	border-top:2px solid #666;
+	
 }
 .check{
 	padding:10px;
+}
+input{
+	font-size:18px;
 }
 </style>
 
@@ -280,10 +328,7 @@ h1 {
 	function hideLoginBox(object){
 		var TableNumber=document.getElementById(object).value;
 		if(TableNumber!=""){
-			$("div#loginBoxMain").css("display","none");
-			//$("div#loding").css("display","block");
-			Todeal(TableNumber);
-			//countDown(3,'http://www.cainaoke.com/');
+			Ajax(TableNumber,object);
 		}
 		else if(TableNumber==""){
 			alert('请输入桌号');
@@ -340,12 +385,48 @@ window.onload = function(){
 	rDrag.init(obj);
 }
 </script>
+
+<script>
+//判断是否有复选框被选中
+function chkCheckBox() {
+    var obj = document.getElementsByName("t1[]"); // 获取多选框数组
+    var objLen = obj.length;
+    var objYN = false; // 是否有选择
+    for (var i = 0; i < objLen; i++) {
+        if (obj [i].checked == true) {
+            objYN = true;
+            break;
+        }
+    }
+    if (!objYN) {
+        alert('请至少选择一项');
+        return false;
+    } else {
+        return true;
+    }
+}
+</script>
+
+<!--点击文字选中复选框-->
+<script>
+function addserviceCheckbox(checkbox){
+	var obj = document.getElementById(checkbox);
+	if(obj.checked==false)
+	obj.checked=true;
+	else
+	obj.checked=false;
+	return true;
+	
+	
+}
+</script>
 </head>
 <body>
 <?php
 $db=new SQLite3("db/test.db3");
 $rs=$db->query('select * from table_show');
 $colNum=$rs->numColumns();
+$addme=0;
 echo ' <div class="header">
        <ul id="nav"> 
        <li class="mainlevel"><a href="#">分类</a>
@@ -361,14 +442,14 @@ echo ' <div class="header">
 	}
 	}
 
-echo '</ul><li class="mainlevel"><a href="check_out.php" ><span>购物车</span></a></li>';
+echo '</ul><li class="mainlevel"><a href="check_out.php" ><span>餐车</span></a></li>';
 echo '<li class="mainlevel"><a href="#" ><span>服务</span></a></li>';
 echo '<li class="mainlevel"><a href="recreation.html" ><span>娱乐</span></a></li>';
 echo '</ul>
       </div>';
       ?>
 <div class="main">
-<form method="post" action="dealService.php" name="form1">
+<form method="post" action="dealService.php" name="form1" onsubmit="return chkCheckBox()">
 <?php
 
 include('quote.php');
@@ -389,11 +470,13 @@ if(!$rs)
          //判断name字段来输出表名
          if ($rs->columnName($i) == 'serviceName')
          {
-             echo '<input type="checkbox" class="check" name="bha" value="'.$row[0].'" >'.$row[$i].'<br/><br/>'; 
+             //echo '<input type="checkbox" class="check" id="service'.$addme.'" name="t1[]" value="'.$row[0].'" ><label for="service'.$addme.'" style="width:70%;display:-moz-inline-box;display:inline-block;">'.$row[$i].'</label><br/><br/>'; 
+			 echo '<input type="checkbox" class="check" id="service'.$addme.'" name="t1[]" value="'.$row[0].'" ><a href="javascript:void(0);" style="width:80%;display:-moz-inline-box;display:inline-block;text-decoration:none;color:black;" onclick="addserviceCheckbox(\'service'.$addme.'\')">'.$row[$i].'</a><br/><br/>'; 
+			 ++$addme;
         }
      }
  } 
-
+  
  $rs->finalize();
  $db->close(); 
  $rs = null;
@@ -429,16 +512,13 @@ else
 	<div id=\"loginBoxContent\" >
 		<form action=\"#\" method=\"post\">
 			<table  style=\"margin:0px auto;\">
-			<tr><td  style=\"padding-top:20px\">桌号: <input id=\"tablenum\" type=\"text\" name=\"Number\" style=\"width:60%;height:20px;\" onkeyup=\"this.value=this.value.replace(/\D/g,'')\" onafterpaste=\"this.value=this.value.replace(/\D/g,'');\"></td></tr>
-			<tr><td style=\"text-align:center;margin:0px auto; padding-top:20px;\"><input type=\"button\" name=\"submit\" style=\"height:40px;width:50%; font-size:28px;\" value=\"提交\" onClick=\"hideLoginBox('tablenum')\"/>
+			<tr><td  style=\"padding-top:20px\" >桌号: <input id=\"tablenum\" type=\"number\" name=\"Number\" style=\"width:40%;font-size: 18px;\" onkeyup=\"this.value=this.value.replace(/\D/g,'')\" onafterpaste=\"this.value=this.value.replace(/\D/g,'');\"></td></tr>
+			<tr><td style=\"text-align:center;margin:0px auto; padding-top:20px;\"><input type=\"button\" name=\"submit\" style=\"height:40px;width:50%; font-size:28px;\" value=\"确定\" onClick=\"hideLoginBox('tablenum')\"/>
 			</table>
 		</form>	
 	</div>	
 </div>
-</div>
-
-	
-		
+</div>		
 	";
 }
  

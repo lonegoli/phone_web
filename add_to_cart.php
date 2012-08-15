@@ -37,7 +37,9 @@ $_SESSION[$key]['num']=$num;
   if(isset($_SESSION))//判断是否为空
   {
   foreach($_SESSION as $key=>$value){
-//包含"shoe字符串的才是我们真正需要的商品信息。"
+	  if(strstr($key,"dish"))
+	  {
+//包含"dish字符串的才是我们真正需要的商品信息。"
 if(isset($value['price'])&&isset($value['num']))
 {
 	
@@ -49,6 +51,7 @@ $_SESSION['tolnum']+=$value['num'];
 //$to=$_SESSION['totalamount'].','.$_SESSION['tolnum'];
 }
 }
+  }
 if(isset($_SESSION[$id]['num']))
 {
 	$to=$_SESSION[$id]['num'];

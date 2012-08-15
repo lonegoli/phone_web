@@ -9,18 +9,28 @@ $dishID=substr($key,4);
 //$diashname=$value['name'];
 $dishnum=$value['num'];
 //$dishprice=$value['price'];
+           $sql=sprintf("select * from temporaryMainDish where dishID like %d and tablenum like %d",$dishID,$tablenum);
+		   $rs=$db->query($sql) or die("查找失败！");
+			if($rs->fetchArray())
+			{
+				$sql=sprintf("update temporaryMainDish set dishnum=dishnum+%d where dishID=%d and tablenum=%d",$dishnum,$dishID,$tablenum);
+				$db->exec($sql) or die("提交失败！");
+			}
+			else
+			{
 			$sql=sprintf("insert into temporaryMainDish values(null,%d ,%d ,%d)",$dishID,$dishnum,$tablenum);
-			$db->exec($sql) or die("提交菜单失败");
+			$db->exec($sql) or die("提交失败！");
+			}
+			
 			$sql=sprintf("update table_info set status=2 where tablenum=%d",$tablenum);
-			$db->exec($sql) or die("提交菜单失败");
+			$db->exec($sql) or die("提交失败！");
 }
-}
-		
+}		
 $db->close();
 $db=null;
 session_unset();
-ob_start();
-session_start();
+//ob_start();
+//session_start();
 $_SESSION['tablenum']=$tablenum;
-echo "提交成功了";
+echo "第".$_SESSION['tablenum']."桌提交成功！";
 ?>

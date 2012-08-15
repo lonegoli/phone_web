@@ -3,10 +3,29 @@ ob_start();
 session_start();
 ?>
 <script type="text/javascript">
+function createXMLHttpRequest(){
+if(window.XMLHttpRequest){//非IE浏览器
+			xmlHttp=new XMLHttpRequest();
+			if(!xmlHttp)
+			{
+				alert("创建对象失败");
+			}
+		}
+		else if(window.ActiveXObject){
+			xmlHttp=new ActiveXObject("Microsoft.XMLHTTP");
+			if(!xmlHttp)
+			{
+				alert("创建对象失败");
+			}
+		}
+ }
+ 
+
 function checknum(total){
-	if(total==0)
+	var total1=document.getElementById("totalamount2").childNodes[0].nodeValue;
+	if(total==0||total1==0)
 	{
-		alert("亲，你还没点菜喔！")
+		alert("尊敬的用户，您还没点菜！")
 		return false;
 	}
 	return true;
@@ -22,6 +41,41 @@ function checknum(total){
 <meta name="MobileOptimized" content="320" />
 <link rel="stylesheet" href="css/base.css" />
 <link rel="stylesheet" href="css/shoppingcart.css" />
+
+
+
+<link rel="stylesheet" href="css/fx.slide.css" type="text/css" media="screen" />
+	<script src="js/jquery-1.7.2.min.js" type="text/javascript"></script>
+
+	<script language="javascript" >
+		$(function(){
+		   $("#toggleLogin").toggle(function(){
+		        $("#login").parent("div").animate({ height : 105 } , 520 );
+				$("#login").animate({marginTop : 0 } , 500 );
+				$(this).blur();
+				document.getElementById("toggleLogin").innerHTML="关闭";
+		   },function(){
+			    $("#login").parent("div").animate({ height : 0 } , 500 );
+				$("#login").animate({marginTop : -105 } , 520 ); 
+				$(this).blur();
+				document.getElementById("toggleLogin").innerHTML="更改桌号";
+		   });
+		   $("#closeLogin").click(function(){
+		        $("#login").parent("div").animate({ height : 0 } , 500 );
+				$("#login").animate({marginTop : -105 } , 520 ); 
+				document.getElementById("toggleLogin").innerHTML="更改桌号";
+		   });
+		})
+	</script>
+
+
+
+
+
+
+
+
+
 <!--隐藏层样式-->
 <style type="text/css">
 .closeOne{
@@ -56,7 +110,43 @@ function checknum(total){
 <!--隐藏层JS-->
 <script type="text/javascript">
 //=点击展开关闭效果=
-function openShutManager(oSourceObj,oTargetObj,shutAble,oOpenTip,oShutTip){
+
+function dealhistory(boxname,historyId){
+createXMLHttpRequest();
+var postStr="tablenum="+1;
+if(boxname=='box2')
+{
+	xmlHttp.open("post", "dealpadhistory.php");
+}
+
+if(boxname=='box3')
+{
+xmlHttp.open("post", "dealhistory.php");
+}
+
+xmlHttp.setRequestHeader("cache-control","no-cache"); 
+xmlHttp.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+xmlHttp.send(postStr);
+xmlHttp.onreadystatechange=function()
+{
+if (4==xmlHttp.readyState){
+                if (200==xmlHttp.status)
+				{
+					document.getElementById(historyId).innerHTML=xmlHttp.responseText;
+                }
+				else
+				{
+                    alert("发生错误!");
+                }
+            }
+}
+}
+
+
+
+
+
+function openShutManager(oSourceObj,oTargetObj,shutAble,oOpenTip,oShutTip,historyId){
 var sourceObj = typeof oSourceObj == "string" ? document.getElementById(oSourceObj) : oSourceObj;
 var targetObj = typeof oTargetObj == "string" ? document.getElementById(oTargetObj) : oTargetObj;
 var openTip = oOpenTip || "";
@@ -73,6 +163,7 @@ if(targetObj.style.display!="none"){
    if(openTip  &&  shutTip){
 	sourceObj.className="openOne"
     sourceObj.innerHTML = openTip; 
+	dealhistory(oTargetObj,historyId);
    }
 }
 }
@@ -146,16 +237,6 @@ if(targetObj.style.display!="none"){
 <!--提交代码-->
 
 <script type="text/javascript">
-function createXMLHttpRequest(){
-if(window.XMLHttpRequest){//非IE浏览器
-			xmlHttp=new XMLHttpRequest();
-		}
-		else if(window.ActiveXObject){
-			xmlHttp=new ActiveXObject("Microsoft.XMLHTTP");
-		}
-
- }
- 
 function Todeal(tablenum){
 createXMLHttpRequest();
 var postStr="tablenum="+tablenum;;
@@ -171,6 +252,7 @@ if (4==xmlHttp.readyState){
 				{
 					//alert("提交成功!");
 				    //alert(xmlHttp.responseText);
+					//alert(document.getElementById("showtablenum").innerHTML);
 					document.getElementById("showtablenum").innerHTML="(桌位号:"+tablenum+")";
                 }
 				else
@@ -178,6 +260,43 @@ if (4==xmlHttp.readyState){
                     alert("发生错误!");
                 }
             }
+}
+}
+
+
+
+function Ajax(object){
+var data=document.getElementById(object).value;
+createXMLHttpRequest();
+var postStr="tablenum="+data;
+xmlHttp.open("post", "tablechk.php");
+xmlHttp.setRequestHeader("cache-control","no-cache"); 
+xmlHttp.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+xmlHttp.send(postStr);
+xmlHttp.onreadystatechange=function()
+{
+if (4==xmlHttp.readyState){
+                if (200==xmlHttp.status)
+				{
+					if(xmlHttp.responseText=="true")
+					{
+						alert("该桌号不存在，请重新输入！");
+						document.getElementById(object).value="";
+						document.getElementById(object).focus();
+					}
+					else
+					{
+						$("div#loginBoxMain").css("display","none");
+			    //$("div#loding").css("display","block");
+			            Todeal(data);
+						document.getElementById(object).value="";
+			  //countDown(3,'http://www.cainaoke.com/'); 		
+					}
+               }
+               else{
+                       alert("发生错误!");
+                   }
+           }
 }
 }
 
@@ -202,10 +321,7 @@ function countDown(secs,surl){
 	function hideLoginBox(object){
 		var TableNumber=document.getElementById(object).value;
 		if(TableNumber!=""){
-			$("div#loginBoxMain").css("display","none");
-			//$("div#loding").css("display","block");
-			Todeal(TableNumber);
-			//countDown(3,'http://www.cainaoke.com/');
+			Ajax(object);
 		}
 		else if(TableNumber==""){
 			alert('请输入桌号');
@@ -269,6 +385,43 @@ window.onload = function(){
 <script type="text/javascript" src="js/public.js"></script>
 </head>
 <body class="SCStep1" style="position: relative;">
+
+
+
+
+
+<div style="margin: 0px; overflow: hidden; position: relative; height: 0px;">
+		<div id="login" style="margin: -210px 0px 0px; height:210px;">
+			<div class="loginContent">
+				<form action="#" method="post" onSubmit="Ajax('new');return false">
+					<!--<label for="log"><b>当前餐桌号: </b></label>
+					<input class="field" type="text" name="old" id="old" value="" size="15" />-->
+					<label for="pwd"><b>新餐桌号:</b></label>
+					<input class="field" type="number" name="new" id="new"  style="font-size:14px;width:80px;" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'');"/>
+					<input type="submit" name="submit" id="closeLogin" value="确定" class="button_login" />
+				</form>
+			</div>
+			<!--<div class="loginClose"><a href="#" id="closeLogin">关闭</a></div>-->
+		</div> 
+	</div> 
+	<!-- /login -->
+
+    <div id="openAndClose">
+		<div id="top">
+		<!-- login -->
+			<ul class="login">
+		    	<li class="left">&nbsp;</li>
+				<li><span style="background-image:url("image/sanjiao.png")"></span><a id="toggleLogin" href="#" style="text-decoration: none;">更改桌号</a></li>
+			</ul> <!-- / login -->
+		</div> <!-- / top -->
+
+        <div class="clearfix"></div>
+        </div>
+
+
+
+
+
 <?php
 
 $products=array(); 
@@ -280,25 +433,25 @@ $products[$key]['price']=$value['price'];
 }
 }
 ?>
-<div class="main clearfix" id="cartbody">
 
+<div class="main clearfix" id="cartbody">
 <div class="shoppingCart">
     <table width="97%" height="252" class="dataPanel">
-        <caption>我的购物车信息<?php if(isset($_SESSION['tablenum'])) {echo "<span style=\"color:red;\">(  桌位号:".$_SESSION['tablenum'].")</span>";} else {echo "<sapn id=\"showtablenum\" style=\"color:red;\">(还未选定桌位号)</span>";}?></caption>
+        <caption>我的餐车信息<?php if(isset($_SESSION['tablenum'])) {echo "<span id=\"showtablenum\" style=\"color:red;\">(  桌号:".$_SESSION['tablenum'].")</span>";} else {echo "<sapn id=\"showtablenum\" style=\"color:red;\">(还未选定桌位号)</span>";}?></caption>
         <thead>
             <tr>
                  <td width="32%" height="106" class="infos">名称</td>
-               <td width="14%" class="infos">单价</td>
-                <td width="14%" class="infos">数量</td>
-                <td width="16%" class="infos">总价</td>
-                <td width="24%" class="infos">移除</td>
+                 <td width="14%" class="infos">单价</td>
+                 <td width="14%" class="infos">数量</td>
+                 <td width="16%" class="infos">总价</td>
+                 <td width="24%" class="infos">移除</td>
 
             </tr>
         </thead>
         <tfoot>
             <tr> 
-                <td height="167" colspan="6"><p class="sumary"><span class="mr15" id="totalamount1">原始金额:<?php if(!isset($_SESSION['totalamount'])){echo 0;} else {echo $_SESSION['totalamount'];}?></span><span>返现：0.00</span></p>
-                    <p class="total"><strong>商品总金额:</strong><em id="totalamount2"><?php 
+                <td height="110" colspan="6">
+                    <p class="total"><strong>总金额:<em>￥</em></strong><em id="totalamount2"><?php 
 					if(!isset($_SESSION['totalamount']))
 					{
 					echo 0;
@@ -310,7 +463,7 @@ $products[$key]['price']=$value['price'];
                     
                     <div  class="clearfix">
                     
-                    <a href="index.php" style="text-decoration:none; float:left; line-height:27px;border:1px solid #C3C3C3;background-color:#ECECEC ;color:333333;border-radius:4px 4px 4px 4px;">继续购物</a>
+                    <a href="index.php" style="text-decoration:none; float:left; line-height:27px;border:1px solid #C3C3C3;background-color:#ECECEC ;color:333333;border-radius:4px 4px 4px 4px;">继续点菜</a>
                
                     
                     <a id="beforegotoorder2" style="text-decoration:none;float:right; line-height:27px;border:1px solid #C3C3C3;background-color:#ECECEC ;color:333333;border-radius:4px 4px 4px 4px;"" href="dealOrder.html" onClick="return checknum(<?php if(!isset($_SESSION['totalamount'])){echo 0;} else {echo $_SESSION['totalamount'];}?>)" >提交</a>
@@ -334,7 +487,7 @@ $products[$key]['price']=$value['price'];
 <td class="infos"><?php echo $product['price'];?></td>
 <td class="infos"><?php echo $product['num'];?></td>
 <td class="infos"><?php echo $product['num']*$product['price'];?></td>
-<td class="infos"><input style=" width:100%" type="button" value="移除" onClick="remove_to_cart(this,'<?php echo $key;?>')" /></td>
+<td class="infos" style="padding:5px;"><input style=" width:100%;font-size: 16px;" type="button" value="移除" onClick="remove_to_cart(this,'<?php echo $key;?>')" /></td>
 </tr>
 </tbody>
 <?php }
@@ -344,13 +497,28 @@ $products[$key]['price']=$value['price'];
 </div>
 </div>
 
+
+
 <div class="one">
-<span class="closeOne" onClick="openShutManager(this,'box3',false,'关闭历史','浏览历史')">浏览历史</span>
+<span class="closeOne" onClick="openShutManager(this,'box2',false,'关闭','同桌已点','history1')">同桌已点</span>
+<div id="box2" style="display:none">
+<span id="history1">
+
+
+</span>
+</div>
+</div>
+
+
+
+
+<div class="one">
+<span class="closeOne" onClick="openShutManager(this,'box3',false,'关闭','已点菜品','history')">已点菜品</span>
 <div id="box3" style="display:none">
- <table>
- <tr><th>name</th><th>age</th></tr>
- <tr><td>jack</td><td>24</td><tr>
- </table>
+<span id="history">
+
+
+</span>
 </div>
 </div>
 
@@ -369,12 +537,12 @@ else
 	</div>
 	<div id=\"loginBoxOutline\">
 	<div id=\"loginBoxTitle\" onmouseover=\"this.style.cursor='move'\">
-		<b style=\"position:relative;left:10px;top:3px\">输入桌号</b>	</div>
+		<b style=\"position:relative;left:10px;top:3px;line-height:1.1;\">输入桌号</b>	</div>
 	<div id=\"loginBoxContent\" >
 		<form action=\"#\" method=\"post\">
 			<table  style=\"margin:0px auto;\">
-			<tr><td  style=\"padding-top:20px\">桌号: <input id=\"tablenum\" type=\"text\" name=\"Number\" style=\"width:60%;height:20px;\" onkeyup=\"this.value=this.value.replace(/\D/g,'')\" onafterpaste=\"this.value=this.value.replace(/\D/g,'');\"></td></tr>
-			<tr><td style=\"text-align:center;margin:0px auto; padding-top:20px;\"><input type=\"button\" name=\"submit\" style=\"height:40px;width:50%; font-size:28px;\" value=\"提交\" onClick=\"hideLoginBox('tablenum')\"/>
+			<tr><td  style=\"padding-top:20px;font-size:28px;\">桌号: <input id=\"tablenum\" type=\"number\" name=\"Number\"  style=\"width:40%;font-size:18px;\" onkeyup=\"this.value=this.value.replace(/\D/g,'')\" onafterpaste=\"this.value=this.value.replace(/\D/g,'');\"></td></tr>
+			<tr><td style=\"text-align:center;margin:0px auto; padding-top:20px;\"><input type=\"button\" name=\"submit\" style=\"height:40px;width:50%; font-size:28px;text-aglin=center;\" value=\"确定\" onClick=\"hideLoginBox('tablenum')\"/>
 			</table>
 		</form>	
 	</div>	

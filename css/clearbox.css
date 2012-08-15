@@ -182,7 +182,7 @@
 	BACKGROUND: url(../pic/next.gif) no-repeat right 50%
 }
 #CB_CloseWindow {
-	Z-INDEX: 1104; RIGHT: -1px; CURSOR: pointer; POSITION: absolute; TOP: 0px
+	Z-INDEX: 1104; RIGHT: -1px; CURSOR: pointer; POSITION: absolute; TOP: 0px;width:100%;height:100%;
 }
 #CB_SlideShowS {
 	Z-INDEX: 1104; LEFT: -1px; CURSOR: pointer; POSITION: absolute; TOP: 0px

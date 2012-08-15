@@ -161,7 +161,7 @@ echo ' <div class="header">
 	}
 	}
 
-echo '</ul><li class="mainlevel"><a href="check_out.php" ><span>购物车</span></a></li>';
+echo '</ul><li class="mainlevel"><a href="check_out.php" ><span>餐车</span></a></li>';
 echo '<li class="mainlevel"><a href="service.php" ><span>服务</span></a></li>';
 echo '<li class="mainlevel"><a href="recreation.html" ><span>娱乐</span></a></li>';
 echo '</ul>
