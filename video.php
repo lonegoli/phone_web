@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <script src="js/jquery.min.js" type="text/javascript"></script>
 <script type="text/javascript">
-$(document).ready(function(){
+/*$(document).ready(function(){
 	jQuery.navlevel2 = function(level1,dytime) {
 		
 	  $(level1).mouseenter(function(){
@@ -22,7 +22,7 @@ $(document).ready(function(){
 	  
 	};
   $.navlevel2("li.mainlevel",200);
-});
+});*/
 </script>
 <style>
 html, body, ul, li {
@@ -138,12 +138,20 @@ ul, li {
 	DISPLAY: block
     font-size: 18px;
 }
+.clearfix:after {
+    content: ".";
+    clear: both;
+    height: 0;
+    visibility: hidden;
+    display: block;
+}
+
 </style>
 </head>
 <body>
 
 <?php
-$db=new SQLite3("db/test.db3");
+/*$db=new SQLite3("db/test.db3");
 $rs=$db->query('select * from table_show');
 $colNum=$rs->numColumns();
 echo ' <div class="header">
@@ -166,10 +174,12 @@ echo '<li class="mainlevel"><a href="service.php" ><span>服务</span></a></li>'
 echo '<li class="mainlevel"><a href="recreation.html" ><span>娱乐</span></a></li>';
 echo '</ul>
       </div>';
-      ?>
-      <div class="videopic">
-<a href='videomedio.php?videoname=web'><img src="image/web.jpg" alt="视频1" style="height:180px;width:220px;"></a>
-<span>海洋奇观</span>
+      */?>
+      <div class="videopic clearfix">
+<a href='videomedio.php?videoname=web' style="float:left;"><img src="image/web.jpg" alt="视频1" style="height:120px;width:160px;"></a>
+<p>海洋奇观</p>
+<p>时长：0时0分47秒</p>
+<div>推荐指数：<br/><img src="image/star.gif"><img src="image/star.gif"><img src="image/star.gif"><img src="image/star.gif"><img src="image/star.gif"></div>
 </div>
 
 <!--<div class="videopic">
@@ -177,19 +187,60 @@ echo '</ul>
 <span>欧洲美景</span>
 </div>-->
 
-<div class="videopic">
-<a href='videomedio.php?videoname=fukua'><img src="image/fukua.jpg" alt="视频3" style="height:180px;width:220px;"></a>
-<span>浮夸MV</span>
+<div class="videopic clearfix">
+<a href='videomedio.php?videoname=Video_Demo3' style="float:left;"><img src="image/Video_Demo3.jpg" alt="视频2" style="height:120px;width:160px;"></a>
+<p>玩具总动员</p>
+<p>时长：0时1分28秒</p>
+<div>推荐指数：<br/><img src="image/star.gif"><img src="image/star.gif"><img src="image/star.gif"><img src="image/star.gif"><img src="image/star.gif"></div>
 </div>
 
-<div class="videopic">
-<a href='videomedio.php?videoname=aozhou'><img src="image/aozhou.jpg" alt="视频4" style="height:180px;width:220px;"></a>
-<span>澳洲美景</span>
+
+
+<div class="videopic clearfix">
+<a href='videomedio.php?videoname=Kung.Fu.Panda' style="float:left;"><img src="image/Kung.Fu.Panda.jpg" alt="视频2" style="height:120px;width:160px;"></a>
+<p>功夫熊猫</p>
+<p>时长：0时1分17秒</p>
+<div>推荐指数：<br/><img src="image/star.gif"><img src="image/star.gif"><img src="image/star.gif"><img src="image/star.gif"><img src="image/star.gif"></div>
 </div>
 
-<div class="videopic">
-<a href='videomedio.php?videoname=dibai'><img src="image/dibai.jpg" alt="视频5" style="height:180px;width:220px;"></a>
-<span>俯瞰迪拜</span>
+<div class="videopic clearfix">
+<a href='videomedio.php?videoname=Video_Demo2' style="float:left;"><img src="image/Video_Demo2.jpg" alt="视频3" style="height:120px;width:160px;"></a>
+<p>飞机介绍1</p>
+<p>时长：0时7分58秒</p>
+<div>推荐指数：<br/><img src="image/star.gif"><img src="image/star.gif"><img src="image/star.gif"><img src="image/star.gif"></div>
 </div>
+
+
+<div class="videopic clearfix">
+<a href='videomedio.php?videoname=Video_Demo1'  style="float:left;"><img src="image/Video_Demo1.jpg" alt="视频4" style="height:120px;width:160px;"></a>
+<p>少女时代--GEGE</p>
+<p>时长：0时3分34秒</p>
+<div>推荐指数：<br/><img src="image/star.gif"><img src="image/star.gif"><img src="image/star.gif"></div>
+
+</div>
+
+
+<div class="videopic clearfix">
+<a href='videomedio.php?videoname=fukua' style="float:left;"><img src="image/fukua.jpg" alt="视频5" style="height:120px;width:160px;"></a>
+<p>浮夸MV</p>
+<p>时长：0时4分38秒</p>
+<div>推荐指数：<br/><img src="image/star.gif"><img src="image/star.gif"><img src="image/star.gif"></div>
+</div>
+
+<div class="videopic clearfix">
+<a href='videomedio.php?videoname=aozhou' style="float:left;"><img src="image/aozhou.jpg" alt="视频6" style="height:120px;width:160px;"></a>
+<p>澳洲美景</p>
+<p>时长：0时1分15秒</p>
+<div>推荐指数：<br/><img src="image/star.gif"><img src="image/star.gif"></div>
+</div>
+
+<div class="videopic clearfix">
+<a href='videomedio.php?videoname=dibai' style="float:left;"><img src="image/dibai.jpg" alt="视频7" style="height:120px;width:160px;"></a>
+<p>俯瞰迪拜</p>
+<p>时长：0时2分03秒</p>
+<div>推荐指数：<br/><img src="image/star.gif"><img src="image/star.gif"></div>
+</div>
+
+
 <P class="footer"><SPAN>Copyright@2012 <a href="www.cainaoke.com">www.cainaoke.com</a> All Rights Reserved</SPAN> </P>
 </html>

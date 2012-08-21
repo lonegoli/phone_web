@@ -37,7 +37,29 @@ function checknum(total){
 <head>
 <title>购物车</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<script type="text/javascript">
+var browser={    versions:function(){            
+var u = navigator.userAgent, app = navigator.appVersion;            
+return {                
+trident: u.indexOf('Trident') > -1, //IE内核               
+presto: u.indexOf('Presto') > -1, //opera内核               
+webKit: u.indexOf('AppleWebKit') > -1, //苹果、谷歌内核                
+gecko: u.indexOf('Gecko') > -1 && u.indexOf('KHTML') == -1, //火狐内核               
+mobile: !!u.match(/AppleWebKit.*Mobile.*/)||!!u.match(/AppleWebKit/), //是否为移动终端              
+ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端                
+android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1, //android终端或者uc浏览器                
+iPhone: u.indexOf('iPhone') > -1 || u.indexOf('Mac') > -1, //是否为iPhone或者QQHD浏览器                
+iPad: u.indexOf('iPad') > -1, //是否iPad                
+webApp: u.indexOf('Safari') == -1 //是否web应该程序，没有头部与底部        
+};
+}()
+} 
+if(browser.versions.android==false)
+{
+	document.writeln('<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">');
+}
+</script>
+
 <meta name="MobileOptimized" content="320" />
 <link rel="stylesheet" href="css/base.css" />
 <link rel="stylesheet" href="css/shoppingcart.css" />
@@ -394,11 +416,15 @@ window.onload = function(){
 		<div id="login" style="margin: -210px 0px 0px; height:210px;">
 			<div class="loginContent">
 				<form action="#" method="post" onSubmit="Ajax('new');return false">
+                <table>
+                <tr>
 					<!--<label for="log"><b>当前餐桌号: </b></label>
 					<input class="field" type="text" name="old" id="old" value="" size="15" />-->
-					<label for="pwd"><b>新餐桌号:</b></label>
-					<input class="field" type="number" name="new" id="new"  style="font-size:14px;width:80px;" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'');"/>
-					<input type="submit" name="submit" id="closeLogin" value="确定" class="button_login" />
+					<td><label style="font-size:24px;color:#FFF;"><b>新餐桌号:</b></label></td>
+					<td><input class="field" type="number" name="new" id="new"  style="font-size:14px;width:80px;" onKeyUp="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'');"/></td>
+					<td><input type="submit" name="submit" id="closeLogin" value="确定" class="button_login" /></td>
+                    </tr>
+                    </table>
 				</form>
 			</div>
 			<!--<div class="loginClose"><a href="#" id="closeLogin">关闭</a></div>-->
@@ -513,7 +539,7 @@ $products[$key]['price']=$value['price'];
 
 
 <div class="one">
-<span class="closeOne" onClick="openShutManager(this,'box3',false,'关闭','已点菜品','history')">已点菜品</span>
+<span class="closeOne" onClick="openShutManager(this,'box3',false,'关闭','已点菜品','history')">提交菜品</span>
 <div id="box3" style="display:none">
 <span id="history">
 

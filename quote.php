@@ -11,6 +11,7 @@ define('COLUMN_USERNAME',"username");
 define('COLUMN_PASSWORD',"password");
 define('COLUMN_PERMISSION',"permission");
 define('CAINAOKEUSERNAME',"cainaokeusername");
+define('DEFINENUM',50);
 include('opendb.php');
 
 ?>

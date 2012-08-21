@@ -30,11 +30,16 @@ $db=new SQLite3("db/temporary/temp.db3") or die("打开数据库失败！");
     {  
 	   $array = $_POST["t1"];  
 	   $size = count($array);
+	   $tablenum=$_SESSION['tablenum'];
+	   $sql=sprintf("select * from table_info where tablenum like %d",$tablenum);
+$rs=$db->query($sql) or die("查询失败");
+$row=$rs->fetchArray();
+$tableID=$row['id'];
 	   
 	   for($i=0; $i< $size; $i++)
 	      
 		  {  
-		  $sql=sprintf("insert into callWaiter values(null,%d,%d)",$_SESSION['tablenum'],$array[$i]);
+		  $sql=sprintf("insert into callWaiter values(null,%d,%d)",$tableID,$array[$i]);
 		  $db->exec($sql) or die("呼叫失败！");
 		  
 		  }  

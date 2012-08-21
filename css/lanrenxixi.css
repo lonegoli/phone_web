@@ -386,9 +386,9 @@ TABLE {
 .header {
 	MARGIN-RIGHT: 240px
 }
-/*P {
+P {
 	MARGIN-RIGHT: 240px
-}*/
+}
 UL {
 	MARGIN-RIGHT: 240px
 }
@@ -642,7 +642,7 @@ PRE:hover + .note {
 	TEXT-ALIGN: center; PADDING-BOTTOM: 40px; MARGIN: 40px 0px 0px; FONT-SIZE: 18px; text-shadow: rgba(255, 255, 255, 0.08) 0 1px 0
 }
 .footer {
-	BORDER-BOTTOM-WIDTH: 0px; COLOR: #0e0f10; TEXT-DECORATION: none;font-size:28px;margin: 0px 0px 0px 100px;
+	BORDER-BOTTOM-WIDTH: 0px; COLOR: #0e0f10; TEXT-DECORATION: none
 }
 .footer A {
 	BORDER-BOTTOM-WIDTH: 0px; COLOR: #0e0f10; TEXT-DECORATION: none

@@ -3,7 +3,13 @@ ob_start();
 session_start();
 $db=new SQLite3("db/temporary/temp.db3") or die("打开数据库失败");
 $tablenum=$_SESSION['tablenum'];
-$sql=sprintf("select * from temporaryMainDish where tablenum like %d",$tablenum);
+
+$sql=sprintf("select * from table_info where tablenum like %d",$tablenum);
+$rs=$db->query($sql) or die("查询失败");
+$row=$rs->fetchArray();
+$tableID=$row['id'];
+
+$sql=sprintf("select * from temporaryMainDish where tableID like %d",$tableID);
 $rs=$db->query($sql) or die("查找失败！");
 $db=new SQLite3("db/test.db3") or die("打开数据库失败！");
 while($row=$rs->fetchArray())
