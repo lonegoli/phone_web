@@ -136,15 +136,15 @@ if(browser.versions.android==false)
 function dealhistory(boxname,historyId){
 createXMLHttpRequest();
 var postStr="tablenum="+1;
-if(boxname=='box2')
+/*if(boxname=='box2')
 {
 	xmlHttp.open("post", "dealpadhistory.php");
 }
 
 if(boxname=='box3')
-{
+{*/
 xmlHttp.open("post", "dealhistory.php");
-}
+//}
 
 xmlHttp.setRequestHeader("cache-control","no-cache"); 
 xmlHttp.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
@@ -526,7 +526,7 @@ $products[$key]['price']=$value['price'];
 
 
 <div class="one">
-<span class="closeOne" onClick="openShutManager(this,'box2',false,'关闭','同桌已点','history1')">同桌已点</span>
+<span class="closeOne" onClick="openShutManager(this,'box2',false,'关闭','本桌已点','history1')">本桌已点</span>
 <div id="box2" style="display:none">
 <span id="history1">
 
@@ -537,7 +537,7 @@ $products[$key]['price']=$value['price'];
 
 
 
-
+<!--
 <div class="one">
 <span class="closeOne" onClick="openShutManager(this,'box3',false,'关闭','已点菜品','history')">提交菜品</span>
 <div id="box3" style="display:none">
@@ -547,7 +547,7 @@ $products[$key]['price']=$value['price'];
 </span>
 </div>
 </div>
-
+-->
 <?php
 if(isset($_SESSION['tablenum']))//判断用户是否输入过桌号
 {
